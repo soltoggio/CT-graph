@@ -1,8 +1,8 @@
-<H1>CT-Graph environments - Lifelong Learning Machines (L2M)</H1>
+<H1>CT-graph environments - Lifelong Learning Machines (L2M)</H1>
 
 The configurable tree graph (CT-graph): A set of dynamic non-Markov reward-based environments
 
-Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick
+Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick.
 
 <b>Installation</b>
 
@@ -12,12 +12,13 @@ pip install -e .
 
 Files:
 
-- test_graph.py: script to the perform basic tests of the CT-Graph environments
+- gym_CTgraph: folder with the CT-graph code.
 
-- testDimRed.py: script to perform checks on the image dataset, e.g. dimensionality reduction and visualization with t-SNE.
+- test_graph.py: script to the perform basic tests of the CT-graph environments.
 
-- ilearn.py: simple script to perform classification on the image dataset
+- testDimRed.py: script to perform checks on the input image dataset, e.g. dimensionality reduction and visualization with t-SNE.
 
+- ilearn.py: simple script to perform classification on the input image dataset.
 
 Using tensorboad:
 tensorboard --logdir='./logs' --port=6707

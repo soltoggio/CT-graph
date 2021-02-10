@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>gym_CTgraph.CTgraph_env API documentation</title>
+<meta name="description" content="CT-graph environments …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>gym_CTgraph.CTgraph_env</code></h1>
+</header>
+<section id="section-intro">
+<p>CT-graph environments</p>
+<p>Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;CT-graph environments
+
+ Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick.
+&#34;&#34;&#34;
+import gym
+from gym import error, spaces, utils
+from gym.utils import seeding
+import numpy as np
+from .CTgraph_images import CTgraph_images
+
+class CTgraphEnv(gym.Env):
+    &#34;&#34;&#34;Main CT-graph class
+The graph uses 5 different state types:\n
+    # stateTypes:
+    # 0: root/home
+    # 1: wait state
+    # 2: decision state
+    # 3: graph end
+    # 4: crash
+
+The graph can be configured to be MDP or POMDP. The subsets of observations can be specified in graph.json. Other parameters that can be specified can be found in graph.json
+    &#34;&#34;&#34;
+    def __init__(self):
+        print(&#34;---------------------------------------------------&#34;)
+        print(&#34;             The CT-graph environments             &#34;)
+        print(&#34;---------------------------------------------------&#34;)
+
+    def init(self, conf_data, images):
+        self.DEPTH = conf_data[&#39;graph_shape&#39;][&#39;depth&#39;]
+        if self.DEPTH &lt; 1:
+            print(&#39;Depth must be &gt;= 1, setting it to 1&#39;)
+            self.DEPTH = 1
+        self.BRANCH = conf_data[&#39;graph_shape&#39;][&#39;branching_factor&#39;]
+        if self.BRANCH &lt; 2:
+            print(&#39;Branching factor must be at least 2, setting it to 2&#39;)
+            self.BRANCH = 2
+        self.P = conf_data[&#39;graph_shape&#39;][&#39;wait_prob&#39;]
+        if (self.P &lt; 0) or (self.P) &gt;= 1:
+            print(&#39;The probability of wait p must be in the range [0,1). Setting parameter to 0&#39;)
+            self.P = 0
+
+        self.HIGH_REWARD_VALUE = conf_data[&#39;reward&#39;][&#39;high_reward_value&#39;]
+        self.CRASH_REWARD_VALUE = conf_data[&#39;reward&#39;][&#39;crash_reward_value&#39;]
+        self.REWARD_DISTRIBUTION = conf_data[&#39;reward&#39;][&#39;reward_distribution&#39;]
+        self.STOCHASTIC_SAMPLING = conf_data[&#39;reward&#39;][&#39;stochastic_sampling&#39;]
+        self.REWARD_STD = conf_data[&#39;reward&#39;][&#39;reward_std&#39;]
+        self.MIN_STATIC_REWARD_EPISODES =  conf_data[&#39;reward&#39;][&#39;min_static_reward_episodes&#39;]
+        self.MAX_STATIC_REWARD_EPISODES = conf_data[&#39;reward&#39;][&#39;max_static_reward_episodes&#39;]
+        self.oneD = conf_data[&#39;image_dataset&#39;][&#39;1D&#39;]
+        self.NR_OF_IMAGES = conf_data[&#39;image_dataset&#39;][&#39;nr_of_images&#39;]
+
+        # observation subsets: there are five subsets
+        self.OBS = np.zeros((5,2))
+        self.OBS[0] = [0,0] #only one observation for state type home
+        self.OBS[1] = np.array(conf_data[&#39;observations&#39;][&#39;wait_states&#39;])
+        self.OBS[2] = np.array(conf_data[&#39;observations&#39;][&#39;decision_states&#39;])
+        self.OBS[3] = np.array(conf_data[&#39;observations&#39;][&#39;graph_ends&#39;])
+        self.OBS[4] = [1,1] #only one observation for state type crash
+        self.setSizes = np.zeros((5,1))
+        for i in range(0,5):
+            self.setSizes[i] = self.OBS[i,1] - self.OBS[i,0] + 1
+
+        for i in range(1,4):
+            assert (self.OBS[i,0] &gt;= 2), &#34;ERROR: Observations 0 and 1 are reserved for home and crash states. Change graph.json.&#34;
+            #print(&#39;self.OBS[i,1], self.OBS[i+1,0]&#39;,self.OBS[i,1], self.OBS[i+1,0])
+        for i in range(1,3):
+            assert self.OBS[i,1] &lt; self.OBS[i+1,0], &#34;ERROR: overlapping observations for different state types. Change graph.json&#34;
+
+        assert self.OBS[3,1] &lt; self.NR_OF_IMAGES, &#34;ERROR: Check consistency in json to have a dataset with a suffcent number of images to satisfy settings of subsets.&#34;
+
+        self.rnd = np.random.RandomState()
+        self.set_seed(conf_data[&#39;image_dataset&#39;][&#39;seed&#39;])
+
+        self.images = images
+
+        self.MDP_waits = conf_data[&#39;observations&#39;][&#39;MDP_wait_s&#39;]
+        self.MDP_decisions = conf_data[&#39;observations&#39;][&#39;MDP_decision_s&#39;]
+
+        self.MDPsize = self.computeMDPsize()
+        if self.MDP_waits:
+            assert (self.computeMDPsize()[1] &lt;= self.setSizes[1]), &#34;ERROR: There are no enough images in the subset for wait states to be used as states in the MDP. Modify graph.json to increase the subset size.&#34;
+        if self.MDP_decisions:
+            assert (self.computeMDPsize()[2] &lt;= self.setSizes[2]), &#34;ERROR: There are no enough images in the subset for decision states to be used as states in the MDP. Modify graph.json to increase the subset size.&#34;
+
+
+        self.set_seed(conf_data[&#39;general_seed&#39;])
+        self.set_high_reward_path(self.get_random_path())
+
+        # the number of the decision actions plus one (a0) that is the wait action
+        self.action_space = spaces.Discrete(self.BRANCH + 1)
+
+        self.complete_reset()
+
+        print(&#34;---------------------------------------------------&#34;)
+        print(&#34;This instance of CT-graph has\n- %d&#34; % self.DEPTH, &#34;sequential decision state(s)\n- %d&#34; % (self.DEPTH+1), &#34;sequential wait states&#34;)
+        print(&#34;- %d&#34; % pow(self.BRANCH,self.DEPTH), &#34;leaf nodes (ends)&#34;)
+        print(&#34;- %d&#34; % self.computeMDPsize()[0], &#34;total states&#34;)
+        print(&#34;- %d&#34; % self.computeMDPsize()[1], &#34;total wait states&#34;)
+        print(&#34;- %d&#34; % self.computeMDPsize()[2], &#34;total decision points&#34;)
+        print(&#34;---------------------------------------------------&#34;)
+        # stateTypes:
+        # 0: root/home
+        # 1: wait state
+        # 2: decision state
+        # 3: graph end
+        # 4: crash
+        return self.images.getNoisyImage(self.X()), 0.0, False, &#34;Root&#34;
+
+    def computeMDPsize(self):
+        &#34;&#34;&#34;Compute size of the minimal MDP according to equation XX and returns total MDP states, total DP and total DS.&#34;&#34;&#34;
+        size = 0
+        for i in range(0,self.DEPTH+1):
+            size = size + np.power(self.BRANCH,i)
+        MDPsize = (2 * size) + 2
+        WaitStatesNr = size
+
+        size = 0
+        for i in range(0,self.DEPTH):
+            size = size + np.power(self.BRANCH,i)
+        DecisionStatesNr = size
+        # returning
+        return MDPsize, WaitStatesNr, DecisionStatesNr
+
+    def X(self):
+        &#34;&#34;&#34;Stochastic process X that selects one observation from the subsets 0,1,2,3,4 according to stateType&#34;&#34;&#34;
+
+        if self.MDP_decisions or self.MDP_waits:
+            &#39;&#39;&#39;Reconstruct MDP with nr states equal to Eq.(7)
+            &#39;&#39;&#39;
+            if self.stateType == 0:
+                return 0 # image 0 is reserved for home
+            if self.stateType == 4:
+                return 1 # image 1 is researved for crash
+            lastBitIdx = self.DEPTH + 1 # this makes an array of size self.BRANCH plus 2, one bit for the stateType and one bit for the one in front
+            identifier = np.zeros(lastBitIdx+1).astype(int)
+            if self.decision_point_action_counter &gt; 0:
+                # setting a one in front of the path bit identifier
+                positionOfOneIdx = self.DEPTH -self.decision_point_action_counter
+                # if all decisions are taken, positionOfOne is 0
+                # one decision is taken, positionOfOne will be
+                identifier[positionOfOneIdx] = 1
+                for i in range(0,self.decision_point_action_counter):
+                    identifier[positionOfOneIdx+i+1] = self.recorded_path[i]
+            if self.stateType == 2 or self.stateType == 3:
+                identifier[lastBitIdx] = 1
+            idxDec = 0
+            # converting to decimal: taking all bits except right-most bit that is used instead to select the subset. This way I have 0 to setSize for both sets, as opposed to 0 to sum(setSizes)
+            for i in range(0,lastBitIdx):
+                idxDec += identifier[i] * np.power(self.BRANCH,lastBitIdx-1-i)
+            #    print(&#39;identifier[i]&#39;, identifier[i])
+            #    print(&#39;np.power(self.BRANCH,lastBitIdx-1-i)&#39;, (np.power(self.BRANCH,lastBitIdx-1-i)))
+            #print(&#39;idxDec from binary conv &#39;, idxDec)
+            # these following lines are insanely complicated: trust them. They return a sequential number 0 to setSizes for stateTypes 1 and 2, then offset them accordingly to fetch the right images in the sets.
+            idxDec = max((idxDec-1), 0) % self.setSizes[self.stateType]
+
+            #print(&#34;self.setSizes[self.stateType])&#34;, ((self.setSizes[self.stateType])))
+            #print(&#39;idxDec before sum &#39;, idxDec)
+            idxDec += self.OBS[self.stateType,0]
+
+            if self.stateType == 1 and not self.MDP_waits:
+                idxDec = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+            if self.stateType == 2 and not self.MDP_decisions:
+                idxDec = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+
+
+            #print(&#39;identifier &#39;, identifier)
+            #print(&#34;Returning observation nr %d&#34; % idxDec)
+
+            return int(idxDec)
+            # non-MDP case
+        else:
+            observation = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+            #print(&#34;Returning observation:&#34;, observation)
+            return observation
+
+    def info(self):
+        return &#34;State: &#34; + str(self.stateType)
+
+    def reset(self):
+        &#34;&#34;&#34;Set the CT-graph at the root node for a new episode&#34;&#34;&#34;
+        self.step_counter = 0
+        self.stateType = 0
+        self.decision_point_action_counter = 0
+        self.recorded_path = -np.ones((self.DEPTH,), dtype=int)
+        #print(&#39;&gt;&gt;st:0, home, img:&#39;, self.X())
+        return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+
+    def complete_reset(self):
+        &#34;&#34;&#34;Set the CT-graph at the root node for a newe episode and reset all data from the previous episodes: rwd_accumulator, reward location, and episode_counter&#34;&#34;&#34;
+        self.rwd_accumulator = 0
+        self.reward_static_location_counter = 0
+        self.episode_counter = 0
+        return self.reset()
+
+    def step(self, action):
+        self.step_counter = self.step_counter + 1
+        if self.step_counter == 1: # new episode
+            self.episode_counter = self.episode_counter + 1
+            self.reward_static_location_counter = self.reward_static_location_counter + 1
+
+        if self.stateType == 0:
+            self.stateType = 1
+            #print(&#39;&gt;&gt;st:1, wait, img:&#39;, self.X())
+            return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+
+        if (self.stateType == 1): # wait state
+            if action == 0:
+                randomNumber = self.rnd.rand()
+                if randomNumber &lt; self.P: #remain in wait state
+                    #print(&#39;&gt;&gt;st:1, wait, img:&#39;, self.X())
+                    return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+                else: # move to decision state or graph end
+                    if self.decision_point_action_counter  == self.DEPTH:
+                        self.stateType = 3
+                        reward = self.calculate_reward()
+                        reward_image = self.images.add_reward_cue(self.images.getNoisyImage(self.X()),reward/self.HIGH_REWARD_VALUE)
+                        #print(&#39;&gt;&gt;st:3, move to END, img:&#39;, self.X())
+                        return reward_image, reward, False, self.info()
+                    else:
+                        #decision point
+                        self.stateType = 2
+                        #print(&#39;&gt;&gt;st:2, move to DP, img:&#39;, self.X())
+                        return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+            else: # crashing from wait
+                self.stateType = 4
+                #print(&#39;&gt;&gt;st:4, img:&#39;, self.X())
+                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+
+        if self.stateType == 2: # decision state
+            if action &gt; 0:
+                # the path recorded is action - 1 to convert a [1,b] range to a [0,b-1] range that is a more suitable code
+                self.recorded_path[self.decision_point_action_counter] = action - 1
+                self.decision_point_action_counter += 1
+                self.stateType = 1 # going to wait state
+                #print(&#39;&gt;&gt;st:1, to wait, img:&#39;, self.X())
+                return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+            else:
+                self.stateType = 4 # going to crash state
+                #print(&#39;&gt;&gt;st:1, to crash, img:&#39;, self.X())
+                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+        if self.stateType == 3:
+            # any action gives reward and return home
+            self.reset()
+            return self.images.getNoisyImage(self.X()), 0.0, True, self.info()
+
+        if self.stateType == 4: # at a crash state
+            self.stateType = 0 # home state
+            return self.images.getNoisyImage(self.X()), 0, True, self.info()
+
+    def render(self, mode=&#39;human&#39;, close=False):
+        print(&#39;dynamic maze render&#39;)
+
+    def set_seed(self, seed):
+        self.rnd.seed(seed)
+
+    def set_high_reward_path(self, path):
+        &#34;&#34;&#34;Set the reward at the location specified in the argument.&#34;&#34;&#34;
+        assert len(path) == self.DEPTH, &#34;length of maze array (%d) must be equal to the depth of maze (%d)&#34;%(len(path), self.DEPTH)
+        for idx, num in enumerate(path):
+            assert num &lt; self.BRANCH, &#34;the numbers in graph array represent the route to the largest reward at each decision point; they must be lower than the number of branches; however the element %d in the graph array (%d) is larger than the number of branches (%d)&#34;%(idx, num, self.BRANCH)
+        self.high_reward_path = path
+
+    def get_random_path(self):
+        &#34;&#34;&#34;Create and return a random location (graph-end).&#34;&#34;&#34;
+        return self.rnd.randint(0, self.BRANCH, self.DEPTH)
+
+    def get_high_reward_path(self):
+        return self.high_reward_path
+
+    def calculate_reward(self):
+        &#34;&#34;&#34;Compute the reward by matching the current state with the location of the high reward.&#34;&#34;&#34;
+        if self.REWARD_DISTRIBUTION == &#39;needle_in_haystack&#39;:
+            reward = self.HIGH_REWARD_VALUE * np.floor(1 - np.mean(np.absolute((self.high_reward_path - self.recorded_path)/(self.BRANCH-1))))
+        elif self.REWARD_DISTRIBUTION == &#39;linear&#39;:
+            weighted_score = np.arange(self.DEPTH,0,-1) * (1 - np.absolute(self.high_reward_path - self.recorded_path))
+            print(weighted_score)
+            reward = np.sum(weighted_score)/sum(np.arange(self.DEPTH,0,-1)) * self.HIGH_REWARD_VALUE
+        if self.STOCHASTIC_SAMPLING:
+            reward = reward + (reward * np.random.normal(0,self.REWARD_STD))
+        return reward</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv"><code class="flex name class">
+<span>class <span class="ident">CTgraphEnv</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Main CT-graph class
+The graph uses 5 different state types:</p>
+<pre><code># stateTypes:
+# 0: root/home
+# 1: wait state
+# 2: decision state
+# 3: graph end
+# 4: crash
+</code></pre>
+<p>The graph can be configured to be MDP or POMDP. The subsets of observations can be specified in graph.json. Other parameters that can be specified can be found in graph.json</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CTgraphEnv(gym.Env):
+    &#34;&#34;&#34;Main CT-graph class
+The graph uses 5 different state types:\n
+    # stateTypes:
+    # 0: root/home
+    # 1: wait state
+    # 2: decision state
+    # 3: graph end
+    # 4: crash
+
+The graph can be configured to be MDP or POMDP. The subsets of observations can be specified in graph.json. Other parameters that can be specified can be found in graph.json
+    &#34;&#34;&#34;
+    def __init__(self):
+        print(&#34;---------------------------------------------------&#34;)
+        print(&#34;             The CT-graph environments             &#34;)
+        print(&#34;---------------------------------------------------&#34;)
+
+    def init(self, conf_data, images):
+        self.DEPTH = conf_data[&#39;graph_shape&#39;][&#39;depth&#39;]
+        if self.DEPTH &lt; 1:
+            print(&#39;Depth must be &gt;= 1, setting it to 1&#39;)
+            self.DEPTH = 1
+        self.BRANCH = conf_data[&#39;graph_shape&#39;][&#39;branching_factor&#39;]
+        if self.BRANCH &lt; 2:
+            print(&#39;Branching factor must be at least 2, setting it to 2&#39;)
+            self.BRANCH = 2
+        self.P = conf_data[&#39;graph_shape&#39;][&#39;wait_prob&#39;]
+        if (self.P &lt; 0) or (self.P) &gt;= 1:
+            print(&#39;The probability of wait p must be in the range [0,1). Setting parameter to 0&#39;)
+            self.P = 0
+
+        self.HIGH_REWARD_VALUE = conf_data[&#39;reward&#39;][&#39;high_reward_value&#39;]
+        self.CRASH_REWARD_VALUE = conf_data[&#39;reward&#39;][&#39;crash_reward_value&#39;]
+        self.REWARD_DISTRIBUTION = conf_data[&#39;reward&#39;][&#39;reward_distribution&#39;]
+        self.STOCHASTIC_SAMPLING = conf_data[&#39;reward&#39;][&#39;stochastic_sampling&#39;]
+        self.REWARD_STD = conf_data[&#39;reward&#39;][&#39;reward_std&#39;]
+        self.MIN_STATIC_REWARD_EPISODES =  conf_data[&#39;reward&#39;][&#39;min_static_reward_episodes&#39;]
+        self.MAX_STATIC_REWARD_EPISODES = conf_data[&#39;reward&#39;][&#39;max_static_reward_episodes&#39;]
+        self.oneD = conf_data[&#39;image_dataset&#39;][&#39;1D&#39;]
+        self.NR_OF_IMAGES = conf_data[&#39;image_dataset&#39;][&#39;nr_of_images&#39;]
+
+        # observation subsets: there are five subsets
+        self.OBS = np.zeros((5,2))
+        self.OBS[0] = [0,0] #only one observation for state type home
+        self.OBS[1] = np.array(conf_data[&#39;observations&#39;][&#39;wait_states&#39;])
+        self.OBS[2] = np.array(conf_data[&#39;observations&#39;][&#39;decision_states&#39;])
+        self.OBS[3] = np.array(conf_data[&#39;observations&#39;][&#39;graph_ends&#39;])
+        self.OBS[4] = [1,1] #only one observation for state type crash
+        self.setSizes = np.zeros((5,1))
+        for i in range(0,5):
+            self.setSizes[i] = self.OBS[i,1] - self.OBS[i,0] + 1
+
+        for i in range(1,4):
+            assert (self.OBS[i,0] &gt;= 2), &#34;ERROR: Observations 0 and 1 are reserved for home and crash states. Change graph.json.&#34;
+            #print(&#39;self.OBS[i,1], self.OBS[i+1,0]&#39;,self.OBS[i,1], self.OBS[i+1,0])
+        for i in range(1,3):
+            assert self.OBS[i,1] &lt; self.OBS[i+1,0], &#34;ERROR: overlapping observations for different state types. Change graph.json&#34;
+
+        assert self.OBS[3,1] &lt; self.NR_OF_IMAGES, &#34;ERROR: Check consistency in json to have a dataset with a suffcent number of images to satisfy settings of subsets.&#34;
+
+        self.rnd = np.random.RandomState()
+        self.set_seed(conf_data[&#39;image_dataset&#39;][&#39;seed&#39;])
+
+        self.images = images
+
+        self.MDP_waits = conf_data[&#39;observations&#39;][&#39;MDP_wait_s&#39;]
+        self.MDP_decisions = conf_data[&#39;observations&#39;][&#39;MDP_decision_s&#39;]
+
+        self.MDPsize = self.computeMDPsize()
+        if self.MDP_waits:
+            assert (self.computeMDPsize()[1] &lt;= self.setSizes[1]), &#34;ERROR: There are no enough images in the subset for wait states to be used as states in the MDP. Modify graph.json to increase the subset size.&#34;
+        if self.MDP_decisions:
+            assert (self.computeMDPsize()[2] &lt;= self.setSizes[2]), &#34;ERROR: There are no enough images in the subset for decision states to be used as states in the MDP. Modify graph.json to increase the subset size.&#34;
+
+
+        self.set_seed(conf_data[&#39;general_seed&#39;])
+        self.set_high_reward_path(self.get_random_path())
+
+        # the number of the decision actions plus one (a0) that is the wait action
+        self.action_space = spaces.Discrete(self.BRANCH + 1)
+
+        self.complete_reset()
+
+        print(&#34;---------------------------------------------------&#34;)
+        print(&#34;This instance of CT-graph has\n- %d&#34; % self.DEPTH, &#34;sequential decision state(s)\n- %d&#34; % (self.DEPTH+1), &#34;sequential wait states&#34;)
+        print(&#34;- %d&#34; % pow(self.BRANCH,self.DEPTH), &#34;leaf nodes (ends)&#34;)
+        print(&#34;- %d&#34; % self.computeMDPsize()[0], &#34;total states&#34;)
+        print(&#34;- %d&#34; % self.computeMDPsize()[1], &#34;total wait states&#34;)
+        print(&#34;- %d&#34; % self.computeMDPsize()[2], &#34;total decision points&#34;)
+        print(&#34;---------------------------------------------------&#34;)
+        # stateTypes:
+        # 0: root/home
+        # 1: wait state
+        # 2: decision state
+        # 3: graph end
+        # 4: crash
+        return self.images.getNoisyImage(self.X()), 0.0, False, &#34;Root&#34;
+
+    def computeMDPsize(self):
+        &#34;&#34;&#34;Compute size of the minimal MDP according to equation XX and returns total MDP states, total DP and total DS.&#34;&#34;&#34;
+        size = 0
+        for i in range(0,self.DEPTH+1):
+            size = size + np.power(self.BRANCH,i)
+        MDPsize = (2 * size) + 2
+        WaitStatesNr = size
+
+        size = 0
+        for i in range(0,self.DEPTH):
+            size = size + np.power(self.BRANCH,i)
+        DecisionStatesNr = size
+        # returning
+        return MDPsize, WaitStatesNr, DecisionStatesNr
+
+    def X(self):
+        &#34;&#34;&#34;Stochastic process X that selects one observation from the subsets 0,1,2,3,4 according to stateType&#34;&#34;&#34;
+
+        if self.MDP_decisions or self.MDP_waits:
+            &#39;&#39;&#39;Reconstruct MDP with nr states equal to Eq.(7)
+            &#39;&#39;&#39;
+            if self.stateType == 0:
+                return 0 # image 0 is reserved for home
+            if self.stateType == 4:
+                return 1 # image 1 is researved for crash
+            lastBitIdx = self.DEPTH + 1 # this makes an array of size self.BRANCH plus 2, one bit for the stateType and one bit for the one in front
+            identifier = np.zeros(lastBitIdx+1).astype(int)
+            if self.decision_point_action_counter &gt; 0:
+                # setting a one in front of the path bit identifier
+                positionOfOneIdx = self.DEPTH -self.decision_point_action_counter
+                # if all decisions are taken, positionOfOne is 0
+                # one decision is taken, positionOfOne will be
+                identifier[positionOfOneIdx] = 1
+                for i in range(0,self.decision_point_action_counter):
+                    identifier[positionOfOneIdx+i+1] = self.recorded_path[i]
+            if self.stateType == 2 or self.stateType == 3:
+                identifier[lastBitIdx] = 1
+            idxDec = 0
+            # converting to decimal: taking all bits except right-most bit that is used instead to select the subset. This way I have 0 to setSize for both sets, as opposed to 0 to sum(setSizes)
+            for i in range(0,lastBitIdx):
+                idxDec += identifier[i] * np.power(self.BRANCH,lastBitIdx-1-i)
+            #    print(&#39;identifier[i]&#39;, identifier[i])
+            #    print(&#39;np.power(self.BRANCH,lastBitIdx-1-i)&#39;, (np.power(self.BRANCH,lastBitIdx-1-i)))
+            #print(&#39;idxDec from binary conv &#39;, idxDec)
+            # these following lines are insanely complicated: trust them. They return a sequential number 0 to setSizes for stateTypes 1 and 2, then offset them accordingly to fetch the right images in the sets.
+            idxDec = max((idxDec-1), 0) % self.setSizes[self.stateType]
+
+            #print(&#34;self.setSizes[self.stateType])&#34;, ((self.setSizes[self.stateType])))
+            #print(&#39;idxDec before sum &#39;, idxDec)
+            idxDec += self.OBS[self.stateType,0]
+
+            if self.stateType == 1 and not self.MDP_waits:
+                idxDec = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+            if self.stateType == 2 and not self.MDP_decisions:
+                idxDec = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+
+
+            #print(&#39;identifier &#39;, identifier)
+            #print(&#34;Returning observation nr %d&#34; % idxDec)
+
+            return int(idxDec)
+            # non-MDP case
+        else:
+            observation = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+            #print(&#34;Returning observation:&#34;, observation)
+            return observation
+
+    def info(self):
+        return &#34;State: &#34; + str(self.stateType)
+
+    def reset(self):
+        &#34;&#34;&#34;Set the CT-graph at the root node for a new episode&#34;&#34;&#34;
+        self.step_counter = 0
+        self.stateType = 0
+        self.decision_point_action_counter = 0
+        self.recorded_path = -np.ones((self.DEPTH,), dtype=int)
+        #print(&#39;&gt;&gt;st:0, home, img:&#39;, self.X())
+        return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+
+    def complete_reset(self):
+        &#34;&#34;&#34;Set the CT-graph at the root node for a newe episode and reset all data from the previous episodes: rwd_accumulator, reward location, and episode_counter&#34;&#34;&#34;
+        self.rwd_accumulator = 0
+        self.reward_static_location_counter = 0
+        self.episode_counter = 0
+        return self.reset()
+
+    def step(self, action):
+        self.step_counter = self.step_counter + 1
+        if self.step_counter == 1: # new episode
+            self.episode_counter = self.episode_counter + 1
+            self.reward_static_location_counter = self.reward_static_location_counter + 1
+
+        if self.stateType == 0:
+            self.stateType = 1
+            #print(&#39;&gt;&gt;st:1, wait, img:&#39;, self.X())
+            return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+
+        if (self.stateType == 1): # wait state
+            if action == 0:
+                randomNumber = self.rnd.rand()
+                if randomNumber &lt; self.P: #remain in wait state
+                    #print(&#39;&gt;&gt;st:1, wait, img:&#39;, self.X())
+                    return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+                else: # move to decision state or graph end
+                    if self.decision_point_action_counter  == self.DEPTH:
+                        self.stateType = 3
+                        reward = self.calculate_reward()
+                        reward_image = self.images.add_reward_cue(self.images.getNoisyImage(self.X()),reward/self.HIGH_REWARD_VALUE)
+                        #print(&#39;&gt;&gt;st:3, move to END, img:&#39;, self.X())
+                        return reward_image, reward, False, self.info()
+                    else:
+                        #decision point
+                        self.stateType = 2
+                        #print(&#39;&gt;&gt;st:2, move to DP, img:&#39;, self.X())
+                        return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+            else: # crashing from wait
+                self.stateType = 4
+                #print(&#39;&gt;&gt;st:4, img:&#39;, self.X())
+                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+
+        if self.stateType == 2: # decision state
+            if action &gt; 0:
+                # the path recorded is action - 1 to convert a [1,b] range to a [0,b-1] range that is a more suitable code
+                self.recorded_path[self.decision_point_action_counter] = action - 1
+                self.decision_point_action_counter += 1
+                self.stateType = 1 # going to wait state
+                #print(&#39;&gt;&gt;st:1, to wait, img:&#39;, self.X())
+                return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+            else:
+                self.stateType = 4 # going to crash state
+                #print(&#39;&gt;&gt;st:1, to crash, img:&#39;, self.X())
+                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+        if self.stateType == 3:
+            # any action gives reward and return home
+            self.reset()
+            return self.images.getNoisyImage(self.X()), 0.0, True, self.info()
+
+        if self.stateType == 4: # at a crash state
+            self.stateType = 0 # home state
+            return self.images.getNoisyImage(self.X()), 0, True, self.info()
+
+    def render(self, mode=&#39;human&#39;, close=False):
+        print(&#39;dynamic maze render&#39;)
+
+    def set_seed(self, seed):
+        self.rnd.seed(seed)
+
+    def set_high_reward_path(self, path):
+        &#34;&#34;&#34;Set the reward at the location specified in the argument.&#34;&#34;&#34;
+        assert len(path) == self.DEPTH, &#34;length of maze array (%d) must be equal to the depth of maze (%d)&#34;%(len(path), self.DEPTH)
+        for idx, num in enumerate(path):
+            assert num &lt; self.BRANCH, &#34;the numbers in graph array represent the route to the largest reward at each decision point; they must be lower than the number of branches; however the element %d in the graph array (%d) is larger than the number of branches (%d)&#34;%(idx, num, self.BRANCH)
+        self.high_reward_path = path
+
+    def get_random_path(self):
+        &#34;&#34;&#34;Create and return a random location (graph-end).&#34;&#34;&#34;
+        return self.rnd.randint(0, self.BRANCH, self.DEPTH)
+
+    def get_high_reward_path(self):
+        return self.high_reward_path
+
+    def calculate_reward(self):
+        &#34;&#34;&#34;Compute the reward by matching the current state with the location of the high reward.&#34;&#34;&#34;
+        if self.REWARD_DISTRIBUTION == &#39;needle_in_haystack&#39;:
+            reward = self.HIGH_REWARD_VALUE * np.floor(1 - np.mean(np.absolute((self.high_reward_path - self.recorded_path)/(self.BRANCH-1))))
+        elif self.REWARD_DISTRIBUTION == &#39;linear&#39;:
+            weighted_score = np.arange(self.DEPTH,0,-1) * (1 - np.absolute(self.high_reward_path - self.recorded_path))
+            print(weighted_score)
+            reward = np.sum(weighted_score)/sum(np.arange(self.DEPTH,0,-1)) * self.HIGH_REWARD_VALUE
+        if self.STOCHASTIC_SAMPLING:
+            reward = reward + (reward * np.random.normal(0,self.REWARD_STD))
+        return reward</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>gym.core.Env</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.X"><code class="name flex">
+<span>def <span class="ident">X</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Stochastic process X that selects one observation from the subsets 0,1,2,3,4 according to stateType</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def X(self):
+    &#34;&#34;&#34;Stochastic process X that selects one observation from the subsets 0,1,2,3,4 according to stateType&#34;&#34;&#34;
+
+    if self.MDP_decisions or self.MDP_waits:
+        &#39;&#39;&#39;Reconstruct MDP with nr states equal to Eq.(7)
+        &#39;&#39;&#39;
+        if self.stateType == 0:
+            return 0 # image 0 is reserved for home
+        if self.stateType == 4:
+            return 1 # image 1 is researved for crash
+        lastBitIdx = self.DEPTH + 1 # this makes an array of size self.BRANCH plus 2, one bit for the stateType and one bit for the one in front
+        identifier = np.zeros(lastBitIdx+1).astype(int)
+        if self.decision_point_action_counter &gt; 0:
+            # setting a one in front of the path bit identifier
+            positionOfOneIdx = self.DEPTH -self.decision_point_action_counter
+            # if all decisions are taken, positionOfOne is 0
+            # one decision is taken, positionOfOne will be
+            identifier[positionOfOneIdx] = 1
+            for i in range(0,self.decision_point_action_counter):
+                identifier[positionOfOneIdx+i+1] = self.recorded_path[i]
+        if self.stateType == 2 or self.stateType == 3:
+            identifier[lastBitIdx] = 1
+        idxDec = 0
+        # converting to decimal: taking all bits except right-most bit that is used instead to select the subset. This way I have 0 to setSize for both sets, as opposed to 0 to sum(setSizes)
+        for i in range(0,lastBitIdx):
+            idxDec += identifier[i] * np.power(self.BRANCH,lastBitIdx-1-i)
+        #    print(&#39;identifier[i]&#39;, identifier[i])
+        #    print(&#39;np.power(self.BRANCH,lastBitIdx-1-i)&#39;, (np.power(self.BRANCH,lastBitIdx-1-i)))
+        #print(&#39;idxDec from binary conv &#39;, idxDec)
+        # these following lines are insanely complicated: trust them. They return a sequential number 0 to setSizes for stateTypes 1 and 2, then offset them accordingly to fetch the right images in the sets.
+        idxDec = max((idxDec-1), 0) % self.setSizes[self.stateType]
+
+        #print(&#34;self.setSizes[self.stateType])&#34;, ((self.setSizes[self.stateType])))
+        #print(&#39;idxDec before sum &#39;, idxDec)
+        idxDec += self.OBS[self.stateType,0]
+
+        if self.stateType == 1 and not self.MDP_waits:
+            idxDec = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+        if self.stateType == 2 and not self.MDP_decisions:
+            idxDec = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+
+
+        #print(&#39;identifier &#39;, identifier)
+        #print(&#34;Returning observation nr %d&#34; % idxDec)
+
+        return int(idxDec)
+        # non-MDP case
+    else:
+        observation = self.rnd.randint(self.OBS[self.stateType,0],self.OBS[self.stateType,1]+1)
+        #print(&#34;Returning observation:&#34;, observation)
+        return observation</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.calculate_reward"><code class="name flex">
+<span>def <span class="ident">calculate_reward</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the reward by matching the current state with the location of the high reward.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calculate_reward(self):
+    &#34;&#34;&#34;Compute the reward by matching the current state with the location of the high reward.&#34;&#34;&#34;
+    if self.REWARD_DISTRIBUTION == &#39;needle_in_haystack&#39;:
+        reward = self.HIGH_REWARD_VALUE * np.floor(1 - np.mean(np.absolute((self.high_reward_path - self.recorded_path)/(self.BRANCH-1))))
+    elif self.REWARD_DISTRIBUTION == &#39;linear&#39;:
+        weighted_score = np.arange(self.DEPTH,0,-1) * (1 - np.absolute(self.high_reward_path - self.recorded_path))
+        print(weighted_score)
+        reward = np.sum(weighted_score)/sum(np.arange(self.DEPTH,0,-1)) * self.HIGH_REWARD_VALUE
+    if self.STOCHASTIC_SAMPLING:
+        reward = reward + (reward * np.random.normal(0,self.REWARD_STD))
+    return reward</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.complete_reset"><code class="name flex">
+<span>def <span class="ident">complete_reset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the CT-graph at the root node for a newe episode and reset all data from the previous episodes: rwd_accumulator, reward location, and episode_counter</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def complete_reset(self):
+    &#34;&#34;&#34;Set the CT-graph at the root node for a newe episode and reset all data from the previous episodes: rwd_accumulator, reward location, and episode_counter&#34;&#34;&#34;
+    self.rwd_accumulator = 0
+    self.reward_static_location_counter = 0
+    self.episode_counter = 0
+    return self.reset()</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.computeMDPsize"><code class="name flex">
+<span>def <span class="ident">computeMDPsize</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute size of the minimal MDP according to equation XX and returns total MDP states, total DP and total DS.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def computeMDPsize(self):
+    &#34;&#34;&#34;Compute size of the minimal MDP according to equation XX and returns total MDP states, total DP and total DS.&#34;&#34;&#34;
+    size = 0
+    for i in range(0,self.DEPTH+1):
+        size = size + np.power(self.BRANCH,i)
+    MDPsize = (2 * size) + 2
+    WaitStatesNr = size
+
+    size = 0
+    for i in range(0,self.DEPTH):
+        size = size + np.power(self.BRANCH,i)
+    DecisionStatesNr = size
+    # returning
+    return MDPsize, WaitStatesNr, DecisionStatesNr</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.get_high_reward_path"><code class="name flex">
+<span>def <span class="ident">get_high_reward_path</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_high_reward_path(self):
+    return self.high_reward_path</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.get_random_path"><code class="name flex">
+<span>def <span class="ident">get_random_path</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create and return a random location (graph-end).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_random_path(self):
+    &#34;&#34;&#34;Create and return a random location (graph-end).&#34;&#34;&#34;
+    return self.rnd.randint(0, self.BRANCH, self.DEPTH)</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.info"><code class="name flex">
+<span>def <span class="ident">info</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def info(self):
+    return &#34;State: &#34; + str(self.stateType)</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, conf_data, images)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, conf_data, images):
+    self.DEPTH = conf_data[&#39;graph_shape&#39;][&#39;depth&#39;]
+    if self.DEPTH &lt; 1:
+        print(&#39;Depth must be &gt;= 1, setting it to 1&#39;)
+        self.DEPTH = 1
+    self.BRANCH = conf_data[&#39;graph_shape&#39;][&#39;branching_factor&#39;]
+    if self.BRANCH &lt; 2:
+        print(&#39;Branching factor must be at least 2, setting it to 2&#39;)
+        self.BRANCH = 2
+    self.P = conf_data[&#39;graph_shape&#39;][&#39;wait_prob&#39;]
+    if (self.P &lt; 0) or (self.P) &gt;= 1:
+        print(&#39;The probability of wait p must be in the range [0,1). Setting parameter to 0&#39;)
+        self.P = 0
+
+    self.HIGH_REWARD_VALUE = conf_data[&#39;reward&#39;][&#39;high_reward_value&#39;]
+    self.CRASH_REWARD_VALUE = conf_data[&#39;reward&#39;][&#39;crash_reward_value&#39;]
+    self.REWARD_DISTRIBUTION = conf_data[&#39;reward&#39;][&#39;reward_distribution&#39;]
+    self.STOCHASTIC_SAMPLING = conf_data[&#39;reward&#39;][&#39;stochastic_sampling&#39;]
+    self.REWARD_STD = conf_data[&#39;reward&#39;][&#39;reward_std&#39;]
+    self.MIN_STATIC_REWARD_EPISODES =  conf_data[&#39;reward&#39;][&#39;min_static_reward_episodes&#39;]
+    self.MAX_STATIC_REWARD_EPISODES = conf_data[&#39;reward&#39;][&#39;max_static_reward_episodes&#39;]
+    self.oneD = conf_data[&#39;image_dataset&#39;][&#39;1D&#39;]
+    self.NR_OF_IMAGES = conf_data[&#39;image_dataset&#39;][&#39;nr_of_images&#39;]
+
+    # observation subsets: there are five subsets
+    self.OBS = np.zeros((5,2))
+    self.OBS[0] = [0,0] #only one observation for state type home
+    self.OBS[1] = np.array(conf_data[&#39;observations&#39;][&#39;wait_states&#39;])
+    self.OBS[2] = np.array(conf_data[&#39;observations&#39;][&#39;decision_states&#39;])
+    self.OBS[3] = np.array(conf_data[&#39;observations&#39;][&#39;graph_ends&#39;])
+    self.OBS[4] = [1,1] #only one observation for state type crash
+    self.setSizes = np.zeros((5,1))
+    for i in range(0,5):
+        self.setSizes[i] = self.OBS[i,1] - self.OBS[i,0] + 1
+
+    for i in range(1,4):
+        assert (self.OBS[i,0] &gt;= 2), &#34;ERROR: Observations 0 and 1 are reserved for home and crash states. Change graph.json.&#34;
+        #print(&#39;self.OBS[i,1], self.OBS[i+1,0]&#39;,self.OBS[i,1], self.OBS[i+1,0])
+    for i in range(1,3):
+        assert self.OBS[i,1] &lt; self.OBS[i+1,0], &#34;ERROR: overlapping observations for different state types. Change graph.json&#34;
+
+    assert self.OBS[3,1] &lt; self.NR_OF_IMAGES, &#34;ERROR: Check consistency in json to have a dataset with a suffcent number of images to satisfy settings of subsets.&#34;
+
+    self.rnd = np.random.RandomState()
+    self.set_seed(conf_data[&#39;image_dataset&#39;][&#39;seed&#39;])
+
+    self.images = images
+
+    self.MDP_waits = conf_data[&#39;observations&#39;][&#39;MDP_wait_s&#39;]
+    self.MDP_decisions = conf_data[&#39;observations&#39;][&#39;MDP_decision_s&#39;]
+
+    self.MDPsize = self.computeMDPsize()
+    if self.MDP_waits:
+        assert (self.computeMDPsize()[1] &lt;= self.setSizes[1]), &#34;ERROR: There are no enough images in the subset for wait states to be used as states in the MDP. Modify graph.json to increase the subset size.&#34;
+    if self.MDP_decisions:
+        assert (self.computeMDPsize()[2] &lt;= self.setSizes[2]), &#34;ERROR: There are no enough images in the subset for decision states to be used as states in the MDP. Modify graph.json to increase the subset size.&#34;
+
+
+    self.set_seed(conf_data[&#39;general_seed&#39;])
+    self.set_high_reward_path(self.get_random_path())
+
+    # the number of the decision actions plus one (a0) that is the wait action
+    self.action_space = spaces.Discrete(self.BRANCH + 1)
+
+    self.complete_reset()
+
+    print(&#34;---------------------------------------------------&#34;)
+    print(&#34;This instance of CT-graph has\n- %d&#34; % self.DEPTH, &#34;sequential decision state(s)\n- %d&#34; % (self.DEPTH+1), &#34;sequential wait states&#34;)
+    print(&#34;- %d&#34; % pow(self.BRANCH,self.DEPTH), &#34;leaf nodes (ends)&#34;)
+    print(&#34;- %d&#34; % self.computeMDPsize()[0], &#34;total states&#34;)
+    print(&#34;- %d&#34; % self.computeMDPsize()[1], &#34;total wait states&#34;)
+    print(&#34;- %d&#34; % self.computeMDPsize()[2], &#34;total decision points&#34;)
+    print(&#34;---------------------------------------------------&#34;)
+    # stateTypes:
+    # 0: root/home
+    # 1: wait state
+    # 2: decision state
+    # 3: graph end
+    # 4: crash
+    return self.images.getNoisyImage(self.X()), 0.0, False, &#34;Root&#34;</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.render"><code class="name flex">
+<span>def <span class="ident">render</span></span>(<span>self, mode='human', close=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Renders the environment.</p>
+<p>The set of supported modes varies per environment. (And some
+environments do not support rendering at all.) By convention,
+if mode is:</p>
+<ul>
+<li>human: render to the current display or terminal and
+return nothing. Usually for human consumption.</li>
+<li>rgb_array: Return an numpy.ndarray with shape (x, y, 3),
+representing RGB values for an x-by-y pixel image, suitable
+for turning into a video.</li>
+<li>ansi: Return a string (str) or StringIO.StringIO containing a
+terminal-style text representation. The text can include newlines
+and ANSI escape sequences (e.g. for colors).</li>
+</ul>
+<h2 id="note">Note</h2>
+<p>Make sure that your class's metadata 'render.modes' key includes
+the list of supported modes. It's recommended to call super()
+in implementations to use the functionality of this method.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mode</code></strong> :&ensp;<code>str</code></dt>
+<dd>the mode to render with</dd>
+</dl>
+<p>Example:</p>
+<p>class MyEnv(Env):
+metadata = {'render.modes': ['human', 'rgb_array']}</p>
+<pre><code>def render(self, mode='human'):
+    if mode == 'rgb_array':
+        return np.array(...) # return RGB frame suitable for video
+    elif mode == 'human':
+        ... # pop up a window and render
+    else:
+        super(MyEnv, self).render(mode=mode) # just raise an exception
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def render(self, mode=&#39;human&#39;, close=False):
+    print(&#39;dynamic maze render&#39;)</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the CT-graph at the root node for a new episode</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self):
+    &#34;&#34;&#34;Set the CT-graph at the root node for a new episode&#34;&#34;&#34;
+    self.step_counter = 0
+    self.stateType = 0
+    self.decision_point_action_counter = 0
+    self.recorded_path = -np.ones((self.DEPTH,), dtype=int)
+    #print(&#39;&gt;&gt;st:0, home, img:&#39;, self.X())
+    return self.images.getNoisyImage(self.X()), 0.0, False, self.info()</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.set_high_reward_path"><code class="name flex">
+<span>def <span class="ident">set_high_reward_path</span></span>(<span>self, path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the reward at the location specified in the argument.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_high_reward_path(self, path):
+    &#34;&#34;&#34;Set the reward at the location specified in the argument.&#34;&#34;&#34;
+    assert len(path) == self.DEPTH, &#34;length of maze array (%d) must be equal to the depth of maze (%d)&#34;%(len(path), self.DEPTH)
+    for idx, num in enumerate(path):
+        assert num &lt; self.BRANCH, &#34;the numbers in graph array represent the route to the largest reward at each decision point; they must be lower than the number of branches; however the element %d in the graph array (%d) is larger than the number of branches (%d)&#34;%(idx, num, self.BRANCH)
+    self.high_reward_path = path</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.set_seed"><code class="name flex">
+<span>def <span class="ident">set_seed</span></span>(<span>self, seed)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_seed(self, seed):
+    self.rnd.seed(seed)</code></pre>
+</details>
+</dd>
+<dt id="gym_CTgraph.CTgraph_env.CTgraphEnv.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, action)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run one timestep of the environment's dynamics. When end of
+episode is reached, you are responsible for calling <code>reset()</code>
+to reset this environment's state.</p>
+<p>Accepts an action and returns a tuple (observation, reward, done, info).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>action</code></strong> :&ensp;<code>object</code></dt>
+<dd>an action provided by the agent</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>observation (object): agent's observation of the current environment
+reward (float) : amount of reward returned after previous action
+done (bool): whether the episode has ended, in which case further step() calls will return undefined results
+info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, action):
+    self.step_counter = self.step_counter + 1
+    if self.step_counter == 1: # new episode
+        self.episode_counter = self.episode_counter + 1
+        self.reward_static_location_counter = self.reward_static_location_counter + 1
+
+    if self.stateType == 0:
+        self.stateType = 1
+        #print(&#39;&gt;&gt;st:1, wait, img:&#39;, self.X())
+        return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+
+    if (self.stateType == 1): # wait state
+        if action == 0:
+            randomNumber = self.rnd.rand()
+            if randomNumber &lt; self.P: #remain in wait state
+                #print(&#39;&gt;&gt;st:1, wait, img:&#39;, self.X())
+                return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+            else: # move to decision state or graph end
+                if self.decision_point_action_counter  == self.DEPTH:
+                    self.stateType = 3
+                    reward = self.calculate_reward()
+                    reward_image = self.images.add_reward_cue(self.images.getNoisyImage(self.X()),reward/self.HIGH_REWARD_VALUE)
+                    #print(&#39;&gt;&gt;st:3, move to END, img:&#39;, self.X())
+                    return reward_image, reward, False, self.info()
+                else:
+                    #decision point
+                    self.stateType = 2
+                    #print(&#39;&gt;&gt;st:2, move to DP, img:&#39;, self.X())
+                    return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+        else: # crashing from wait
+            self.stateType = 4
+            #print(&#39;&gt;&gt;st:4, img:&#39;, self.X())
+            return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+
+    if self.stateType == 2: # decision state
+        if action &gt; 0:
+            # the path recorded is action - 1 to convert a [1,b] range to a [0,b-1] range that is a more suitable code
+            self.recorded_path[self.decision_point_action_counter] = action - 1
+            self.decision_point_action_counter += 1
+            self.stateType = 1 # going to wait state
+            #print(&#39;&gt;&gt;st:1, to wait, img:&#39;, self.X())
+            return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+        else:
+            self.stateType = 4 # going to crash state
+            #print(&#39;&gt;&gt;st:1, to crash, img:&#39;, self.X())
+            return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+    if self.stateType == 3:
+        # any action gives reward and return home
+        self.reset()
+        return self.images.getNoisyImage(self.X()), 0.0, True, self.info()
+
+    if self.stateType == 4: # at a crash state
+        self.stateType = 0 # home state
+        return self.images.getNoisyImage(self.X()), 0, True, self.info()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="gym_CTgraph" href="index.html">gym_CTgraph</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv" href="#gym_CTgraph.CTgraph_env.CTgraphEnv">CTgraphEnv</a></code></h4>
+<ul class="">
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.X" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.X">X</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.calculate_reward" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.calculate_reward">calculate_reward</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.complete_reset" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.complete_reset">complete_reset</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.computeMDPsize" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.computeMDPsize">computeMDPsize</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.get_high_reward_path" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.get_high_reward_path">get_high_reward_path</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.get_random_path" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.get_random_path">get_random_path</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.info" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.info">info</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.init" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.init">init</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.render" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.render">render</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.reset" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.reset">reset</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.set_high_reward_path" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.set_high_reward_path">set_high_reward_path</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.set_seed" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.set_seed">set_seed</a></code></li>
+<li><code><a title="gym_CTgraph.CTgraph_env.CTgraphEnv.step" href="#gym_CTgraph.CTgraph_env.CTgraphEnv.step">step</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

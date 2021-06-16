@@ -3,11 +3,6 @@
 The configurable tree graph (CT-graph): A set of dynamic non-Markov reward-based environments
 
 Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick.
-
-
-<img src="ctgraph-githubfig1.pdf>
-<img src="ctgraph-githubfig2.pdf>
-          
           
 <b>Installation</b>
 
@@ -28,6 +23,11 @@ Files:
 Using tensorboad:
 tensorboard --logdir='./logs' --port=6707
 
+<b> Example of CT-graph with depth=1</b><br>
+![Figure](ctgraph-githubfig1.png)
+
+<b> Example of two CT-graphs with depth=2</b><br>
+![Figure](ctgraph-githubfig2.png)
 
 <b>Acknowledgement</b>
 

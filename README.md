@@ -4,6 +4,11 @@ The configurable tree graph (CT-graph): A set of dynamic non-Markov reward-based
 
 Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick.
 
+
+<img src="ctgraph-githubfig1.pdf>
+<img src="ctgraph-githubfig2.pdf>
+          
+          
 <b>Installation</b>
 
 pip install -e .

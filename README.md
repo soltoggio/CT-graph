@@ -3,6 +3,29 @@
 The configurable tree graph (CT-graph): A set of dynamic non-Markov reward-based environments
 
 Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick.
+
+<b>Objectives</b>
+
+The CT-graph is designed to assess the following RL learning properties:
+<ul>
+<li>learning with variable and measurable degrees of partial observability;
+<li>learning action sequences of adjustable length and increasing memory requirements;
+<li>learning with variable and measurable sparsity and frequency of rewards;
+<li>learning multiple tasks and testing speed of adaptation (lifelong learning scenarios);
+<li>learning multiple tasks where the knowledge of task similarity is a required metrics
+(meta-learning or multi-task learning);
+<li>testing meta-learning approaches for optimised exploration policies;
+<li>learning hierarchical knowledge representation and skill-reuse for fast adaptation to
+dynamics rewards (lifelong learning scenarios);
+<li>testing attention mechanisms to separate key states from confounding stimuli;
+<li>testing associative mechanisms to link key stimuli-action pairs with delayed rewards;
+<li>testing neuromodulatory approaches to learn from key stimuli;
+<li>learning a model of the environment;
+<li>testing the use of selective plasticity mechanisms to enable optimised updates;
+<li>ease of computation of lifelong learning metrics;
+<li>learning a combination of innate and learned knowledge to cope with invariant and
+variant aspects of the environment.
+</ul>
           
 <b>Installation</b>
 

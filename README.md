@@ -26,6 +26,17 @@ dynamics rewards (lifelong learning scenarios);
 <li>learning a combination of innate and learned knowledge to cope with invariant and
 variant aspects of the environment.
 </ul>
+
+<b>Publications</b>
+
+The CT-graph has been used as a simulation tool in the following papers:
+
+<ul>
+<li>          
+Ladosz, Pawel et al., "Deep Reinforcement Learning With Modulated Hebbian Plus Q-Network Architecture," in IEEE Transactions on Neural Networks and Learning Systems, doi: 10.1109/TNNLS.2021.3110281.</li>
+<li>Dick, Jeffery et al. “Detecting Changes and Avoiding Catastrophic Forgetting in Dynamic Partially Observable Environments.” Frontiers in neurorobotics vol. 14 578675. 23 Dec. 2020, doi:10.3389/fnbot.2020.578675 </li>         
+<li>Ben-Iwhiwhu, Eseoghene, et al. "Evolving inborn knowledge for fast adaptation in dynamic POMDP problems." Proceedings of the 2020 Genetic and Evolutionary Computation Conference. 2020. </li>
+</ul>
           
 <b>Installation</b>
 

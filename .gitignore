@@ -6,3 +6,4 @@ logs
 *.npy
 images/
 *.egg-info
+.DS_Store

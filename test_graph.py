@@ -45,7 +45,11 @@ end = timeit.timeit()
 imageDataset = CTgraph_images(conf_data)
 
 # initialise and get initial observation and info
-observation, reward, done, info = env.init(conf_data, imageDataset)
+#observation, reward, done, info = env.init(conf_data, imageDataset)
+observation = env.init(conf_data, imageDataset)
+reward = 0.
+done = False
+info = {}
 
 #plotting: uncomment the following line to plot the observations
 #CTgraph_plot.plotImages(imageDataset, False)
@@ -95,7 +99,8 @@ if CASE == 1:
 
     for test in range(0,nr_episodes):
         done = False
-        observation, reward, done, info = env.complete_reset()
+        #observation, reward, done, info = env.complete_reset()
+        observation = env.complete_reset()
         high_reward_path = env.get_random_path()
         env.set_high_reward_path(high_reward_path)
         index_decision_point_actions = 0

@@ -104,7 +104,8 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         # 2: decision state
         # 3: graph end
         # 4: crash
-        return self.images.getNoisyImage(self.X()), 0.0, False, "Root"
+        #return self.images.getNoisyImage(self.X()), 0.0, False, "Root"
+        return self.images.getNoisyImage(self.X())
 
     def computeMDPsize(self):
         """Compute size of the minimal MDP according to equation XX and returns total MDP states, total DP and total DS."""
@@ -174,7 +175,8 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
             return observation
 
     def info(self):
-        return "State: " + str(self.stateType)
+        #return "State: " + str(self.stateType)
+        return {"state": str(self.stateType)}
 
     def reset(self):
         """Set the CT-graph at the root node for a new episode"""
@@ -183,7 +185,8 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.decision_point_action_counter = 0
         self.recorded_path = -np.ones((self.DEPTH,), dtype=int)
         #print('>>st:0, home, img:', self.X())
-        return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+        #return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+        return self.images.getNoisyImage(self.X())
 
     def complete_reset(self):
         """Set the CT-graph at the root node for a newe episode and reset all data from the previous episodes: rwd_accumulator, reward location, and episode_counter"""

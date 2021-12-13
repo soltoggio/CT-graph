@@ -1,4 +1,5 @@
 """Utility class to produce plots of the image dataset."""
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -37,6 +38,8 @@ class CTgraph_plot:
             ax.set_title(str(image_nr))
 
         plt.tight_layout()
+        if not os.path.exists('./images'):
+            os.makedirs('./images/')
         plt.savefig("./images/imgdataset1.pdf", dpi=150)
 
         if stop:

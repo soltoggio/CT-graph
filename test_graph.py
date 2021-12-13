@@ -68,6 +68,7 @@ print_results = True
 CASE = int(args.CASE)
 #interactive case: step-by-step with operator inputs
 if CASE == 0:
+    observation = env.complete_reset()
     print("The test script sets the high reward path to: ", env.get_high_reward_path())
     printout(observation, reward, action, done, info, counter)
 

@@ -84,7 +84,6 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
 
 
         self.set_seed(conf_data['general_seed'])
-        self.set_high_reward_path(self.get_random_path())
 
         # the number of the decision actions plus one (a0) that is the wait action
         self.action_space = spaces.Discrete(self.BRANCH + 1)
@@ -193,6 +192,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.rwd_accumulator = 0
         self.reward_static_location_counter = 0
         self.episode_counter = 0
+        self.reset_static_reward()
         return self.reset()
 
     def step(self, action):
@@ -201,7 +201,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
             self.episode_counter = self.episode_counter + 1
             self.reward_static_location_counter = self.reward_static_location_counter + 1
             if self.reward_static_location_counter == self.static_reward_episodes:
-                self.reset_static_reward
+                self.reset_static_reward()
 
         if self.stateType == 0:
             self.stateType = 1
@@ -270,7 +270,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         assert(self.MIN_STATIC_REWARD_EPISODES < self.MAX_STATIC_REWARD_EPISODES)
         self.reward_static_location_counter = 0
         self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES, self.MAX_STATIC_REWARD_EPISODES)
-        self.set_high_reward_path(self.get_high_reward_path)
+        self.set_high_reward_path(self.get_random_path())
 
     def get_random_path(self):
         """Create and return a random location (graph-end)."""

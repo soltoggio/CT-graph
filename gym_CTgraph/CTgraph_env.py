@@ -82,12 +82,11 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         if self.MDP_decisions:
             assert (self.computeMDPsize()[2] <= self.setSizes[2]), "ERROR: There are no enough images in the subset for decision states to be used as states in the MDP. Modify graph.json to increase the subset size."
 
-
-        self.set_seed(conf_data['general_seed'])
-
         # the number of the decision actions plus one (a0) that is the wait action
         self.action_space = spaces.Discrete(self.BRANCH + 1)
 
+        self.static_reward_episodes = None # will be set after complete_reset(...) call
+        self.set_seed(conf_data['general_seed'])
         self.complete_reset()
 
         print("---------------------------------------------------")
@@ -267,9 +266,12 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
 
     def reset_static_reward(self):
         """Updates reward location and decides when the reward location will change again"""
-        assert(self.MIN_STATIC_REWARD_EPISODES < self.MAX_STATIC_REWARD_EPISODES)
+        if self.MIN_STATIC_REWARD_EPISODES <= 0 or self.MAX_STATIC_REWARD_EPISODES <= 0:
+            self.static_reward_episodes = -1 # this disables any task/reward change
+        else:
+            assert(self.MIN_STATIC_REWARD_EPISODES < self.MAX_STATIC_REWARD_EPISODES)
+            self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES, self.MAX_STATIC_REWARD_EPISODES)
         self.reward_static_location_counter = 0
-        self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES, self.MAX_STATIC_REWARD_EPISODES)
         self.set_high_reward_path(self.get_random_path())
 
     def get_random_path(self):

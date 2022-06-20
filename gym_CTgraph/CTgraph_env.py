@@ -84,7 +84,6 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
 
 
         self.set_seed(conf_data['general_seed'])
-        self.set_high_reward_path(self.get_random_path())
 
         # the number of the decision actions plus one (a0) that is the wait action
         self.action_space = spaces.Discrete(self.BRANCH + 1)
@@ -193,6 +192,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.rwd_accumulator = 0
         self.reward_static_location_counter = 0
         self.episode_counter = 0
+        self.reset_static_reward()
         return self.reset()
 
     def step(self, action):
@@ -200,6 +200,8 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         if self.step_counter == 1: # new episode
             self.episode_counter = self.episode_counter + 1
             self.reward_static_location_counter = self.reward_static_location_counter + 1
+            if self.reward_static_location_counter == self.static_reward_episodes:
+                self.reset_static_reward()
 
         if self.stateType == 0:
             self.stateType = 1
@@ -262,6 +264,13 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         for idx, num in enumerate(path):
             assert num < self.BRANCH, "the numbers in graph array represent the route to the largest reward at each decision point; they must be lower than the number of branches; however the element %d in the graph array (%d) is larger than the number of branches (%d)"%(idx, num, self.BRANCH)
         self.high_reward_path = path
+
+    def reset_static_reward(self):
+        """Updates reward location and decides when the reward location will change again"""
+        assert(self.MIN_STATIC_REWARD_EPISODES < self.MAX_STATIC_REWARD_EPISODES)
+        self.reward_static_location_counter = 0
+        self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES, self.MAX_STATIC_REWARD_EPISODES)
+        self.set_high_reward_path(self.get_random_path())
 
     def get_random_path(self):
         """Create and return a random location (graph-end)."""

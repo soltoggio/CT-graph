@@ -7,6 +7,7 @@ from gym import error, spaces, utils
 from gym.utils import seeding
 import numpy as np
 from .CTgraph_images import CTgraph_images
+from .CTgraph_conf import CTgraph_conf
 
 class CTgraphEnv(gym.Env):
     """Main CT-graph class
@@ -20,10 +21,28 @@ The graph uses 5 different state types:\n
 
 The graph can be configured to be MDP or POMDP. The subsets of observations can be specified in graph.json. Other parameters that can be specified can be found in graph.json
     """
-    def __init__(self):
+    def __init__(self, config_path):
+        if config_path is None:
+            msg = '`config_path` should not be None. When calling gym.make(...), use '\
+                'gym.make('', config_path=/path/to/ctgraph/config.json). When calling environment '\
+                'constructor, then use CTgraphEnv(config_path=/path/to/ctgraph/config.json'
+            raise ValueError(msg)
         print("---------------------------------------------------")
         print("             The CT-graph environments             ")
         print("---------------------------------------------------")
+
+        # fetch the parameters from the json file
+        configuration = CTgraph_conf("graph.json")
+        conf_data = configuration.getParameters()
+        # generate images/states
+        imageDataset = CTgraph_images(conf_data)
+        # initialise env
+        self.init(conf_data, imageDataset)
+        # observation and action space
+        _reward_signal = 1
+        obs_size = (self.NR_OF_IMAGES + _reward_signal, 1) if self.oneD else (12, 12)
+        self.observation_space = spaces.Box(low=0, high=255, shape=obs_size, dtype=np.uint8)
+        self.action_space = spaces.Discrete(self.BRANCH + 1, start=0)
 
     def init(self, conf_data, images):
         self.DEPTH = conf_data['graph_shape']['depth']
@@ -176,7 +195,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         #return "State: " + str(self.stateType)
         return {"state": str(self.stateType)}
 
-    def reset(self):
+    def reset(self, seed=None, return_info=False, options=None):
         """Set the CT-graph at the root node for a new episode"""
         self.step_counter = 0
         self.stateType = 0
@@ -252,10 +271,13 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
             return self.images.getNoisyImage(self.X()), 0, True, self.info()
 
     def render(self, mode='human', close=False):
-        print('dynamic maze render')
+        print('dynamic graph render')
+
+    def seed(self, seed):
+        self.rnd.seed(seed)
 
     def set_seed(self, seed):
-        self.rnd.seed(seed)
+        self.seed(seed)
 
     def set_high_reward_path(self, path):
         """Set the reward at the location specified in the argument."""

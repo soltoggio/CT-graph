@@ -9,8 +9,8 @@
     "crash_reward_value": -1.0,
     "stochastic_sampling": false,
     "reward_std": 0.1,
-    "min_static_reward_episodes": 30,
-    "max_static_reward_episodes": 70,
+    "min_static_reward_episodes": 0,
+    "max_static_reward_episodes": 0,
     "reward_distribution": "needle_in_haystack"
   },
   "observations": {

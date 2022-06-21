@@ -6,9 +6,7 @@ Launch script to test one single navigation episode in automatic mode and manual
 import numpy as np
 import gym
 from gym_CTgraph import CTgraph_env
-from gym_CTgraph.CTgraph_plot import CTgraph_plot
-from gym_CTgraph.CTgraph_conf import CTgraph_conf
-from gym_CTgraph.CTgraph_images import CTgraph_images
+#from gym_CTgraph.CTgraph_plot import CTgraph_plot
 import argparse
 import json
 import random
@@ -30,23 +28,14 @@ parser.add_argument('-c', '--case', default=0, dest="CASE",
 
 args = parser.parse_args()
 
-# fetch the parameters from the json file
-configuration = CTgraph_conf("graph.json")
-conf_data = configuration.getParameters()
-# print configration data
-print(json.dumps(conf_data, indent=3))
-
 # instantiate the maze
 start = timeit.timeit()
-env = gym.make('CTgraph-v0')
+env = gym.make('CTgraph-v0', config_path='graph.json')
 end = timeit.timeit()
 #print(end - start)
 
-imageDataset = CTgraph_images(conf_data)
-
-# initialise and get initial observation and info
-#observation, reward, done, info = env.init(conf_data, imageDataset)
-observation = env.init(conf_data, imageDataset)
+observation = env.reset()
+print('observation.shape:', observation.shape)
 reward = 0.
 done = False
 info = {}

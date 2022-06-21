@@ -45,6 +45,7 @@ from gym.envs.registration import register
 register(
     id='CTgraph-v0',
     entry_point='gym_CTgraph:CTgraphEnv',
+    kwargs={'config_path': None}
 )
 
 from .CTgraph_env import CTgraphEnv

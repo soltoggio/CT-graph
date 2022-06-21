@@ -15,7 +15,7 @@ class CTgraph_images:
         self.high_value = 254 - self.NOISE_ON_IMAGES
         self.NR_OF_IMAGES = conf_data['image_dataset']['nr_of_images']
         if self.oneD:
-            self.OBS_RES = [self.NR_OF_IMAGES+1,1]
+            self.OBS_RES = [self.NR_OF_IMAGES+1,1] # +1 to capture reward signal information
         else:
             self.OBS_RES = [12,12] # resolution of input images
         self.image = np.zeros(((self.NR_OF_IMAGES,self.OBS_RES[0],self.OBS_RES[1])))
@@ -24,13 +24,13 @@ class CTgraph_images:
                 self.image[i] = self.compute_highLevel_set(i)
             else:
                 self.image[i] = self.compute_random_set(i)
-        np.save('./',self.image)
+        np.save('./ctgraph_observations.npy',self.image)
 
     def getNoisyImage(self, img_nr):
         """Return the image with the UID passed in the argument"""
         if self.oneD:
             noise = self.rnd.randint(0, self.NOISE_ON_IMAGES+1, self.OBS_RES[0]*self.OBS_RES[1]).reshape((self.OBS_RES[0], self.OBS_RES[1]))
-            return self.image[img_nr] + noise
+            return (self.image[img_nr] + noise).astype(np.uint8)
         else:
             noise = self.rnd.randint(0, self.NOISE_ON_IMAGES+1, self.OBS_RES[0]*self.OBS_RES[1]).reshape((self.OBS_RES[0], self.OBS_RES[1]))
             img = self.image[img_nr]

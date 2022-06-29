@@ -32,7 +32,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         print("---------------------------------------------------")
 
         # fetch the parameters from the json file
-        configuration = CTgraph_conf("graph.json")
+        configuration = CTgraph_conf(config_path)
         conf_data = configuration.getParameters()
         # generate images/states
         imageDataset = CTgraph_images(conf_data)

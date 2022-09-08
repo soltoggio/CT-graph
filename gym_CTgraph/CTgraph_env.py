@@ -96,10 +96,10 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.action_space = spaces.Discrete(self.BRANCH + 1)
 
         #Introduce the Observation space of the environment
-        self.observation_space = gym.spaces.Box(low=0, high=255,
+        '''self.observation_space = gym.spaces.Box(low=0, high=255,
                                    shape=(12, 12),
-                                   dtype=np.uint8)
-        '''oneDsize = self.computeMDPsize()[0] + 1
+                                   dtype=np.uint8)'''
+        oneDsize = self.computeMDPsize()[0] + 1
 
         if self.oneD :
             self.observation_space = gym.spaces.Box(low=0, high=1,
@@ -108,7 +108,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         else:
             self.observation_space = gym.spaces.Box(low=0, high=255,
                                    shape=(12, 12),
-                                   dtype=np.uint8)'''
+                                   dtype=np.uint8)
 
         self.complete_reset()
 

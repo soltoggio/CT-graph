@@ -24,6 +24,8 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         print("---------------------------------------------------")
         print("             The CT-graph environments             ")
         print("---------------------------------------------------")
+        #configuration = CTgraph_conf("graph02.json")
+        #conf_data = configuration.getParameters()
 
     def init(self, conf_data, images):
         self.DEPTH = conf_data['graph_shape']['depth']
@@ -63,8 +65,8 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         for i in range(1,4):
             assert (self.OBS[i,0] >= 2), "ERROR: Observations 0 and 1 are reserved for home and crash states. Change graph.json."
             #print('self.OBS[i,1], self.OBS[i+1,0]',self.OBS[i,1], self.OBS[i+1,0])
-        for i in range(1,3):
-            assert self.OBS[i,1] < self.OBS[i+1,0], "ERROR: overlapping observations for different state types. Change graph.json"
+        '''for i in range(1,3):
+            assert self.OBS[i,1] < self.OBS[i+1,0], "ERROR: overlapping observations for different state types. Change graph.json"'''
 
         assert self.OBS[3,1] < self.NR_OF_IMAGES, "ERROR: Check consistency in json to have a dataset with a suffcent number of images to satisfy settings of subsets."
 
@@ -82,11 +84,32 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         if self.MDP_decisions:
             assert (self.computeMDPsize()[2] <= self.setSizes[2]), "ERROR: There are no enough images in the subset for decision states to be used as states in the MDP. Modify graph.json to increase the subset size."
 
+
+        self.set_seed(conf_data['general_seed'])
+        self.set_high_reward_path(self.get_random_path())
+
+        #initialize the self.static_reward_episodes
+        self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES,
+                                                        self.MAX_STATIC_REWARD_EPISODES)
+
         # the number of the decision actions plus one (a0) that is the wait action
         self.action_space = spaces.Discrete(self.BRANCH + 1)
 
-        self.static_reward_episodes = None # will be set after complete_reset(...) call
-        self.set_seed(conf_data['general_seed'])
+        #Introduce the Observation space of the environment
+        self.observation_space = gym.spaces.Box(low=0, high=255,
+                                   shape=(12, 12),
+                                   dtype=np.uint8)
+        '''oneDsize = self.computeMDPsize()[0] + 1
+
+        if self.oneD :
+            self.observation_space = gym.spaces.Box(low=0, high=1,
+                                   shape= (oneDsize, 0),
+                                   dtype=np.uint8)
+        else:
+            self.observation_space = gym.spaces.Box(low=0, high=255,
+                                   shape=(12, 12),
+                                   dtype=np.uint8)'''
+
         self.complete_reset()
 
         print("---------------------------------------------------")
@@ -184,6 +207,11 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.recorded_path = -np.ones((self.DEPTH,), dtype=int)
         #print('>>st:0, home, img:', self.X())
         #return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+        '''self.episode_counter = self.episode_counter + 1
+        self.reward_static_location_counter = self.reward_static_location_counter + 1
+        if self.reward_static_location_counter == self.static_reward_episodes:
+                self.reset_static_reward()'''
+
         return self.images.getNoisyImage(self.X())
 
     def complete_reset(self):
@@ -191,8 +219,9 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.rwd_accumulator = 0
         self.reward_static_location_counter = 0
         self.episode_counter = 0
-        self.reset_static_reward()
         return self.reset()
+
+    
 
     def step(self, action):
         self.step_counter = self.step_counter + 1
@@ -248,7 +277,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
             return self.images.getNoisyImage(self.X()), 0.0, True, self.info()
 
         if self.stateType == 4: # at a crash state
-            self.stateType = 0 # home state
+            self.stateType = 0#self.reset() # home state
             return self.images.getNoisyImage(self.X()), 0, True, self.info()
 
     def render(self, mode='human', close=False):
@@ -266,13 +295,11 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
 
     def reset_static_reward(self):
         """Updates reward location and decides when the reward location will change again"""
-        if self.MIN_STATIC_REWARD_EPISODES <= 0 or self.MAX_STATIC_REWARD_EPISODES <= 0:
-            self.static_reward_episodes = -1 # this disables any task/reward change
-        else:
-            assert(self.MIN_STATIC_REWARD_EPISODES < self.MAX_STATIC_REWARD_EPISODES)
-            self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES, self.MAX_STATIC_REWARD_EPISODES)
+        assert (self.MIN_STATIC_REWARD_EPISODES < self.MAX_STATIC_REWARD_EPISODES)
         self.reward_static_location_counter = 0
-        self.set_high_reward_path(self.get_random_path())
+        self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES,
+                                                        self.MAX_STATIC_REWARD_EPISODES)
+        self.set_high_reward_path(self.get_random_path())#self.get_high_reward_path())#self.get_random_path()
 
     def get_random_path(self):
         """Create and return a random location (graph-end)."""

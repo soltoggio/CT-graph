@@ -40,7 +40,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 """
 
-from gym.envs.registration import register
+from gymnasium.envs.registration import register
 
 register(
     id='CTgraph-v0',

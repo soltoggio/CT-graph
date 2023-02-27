@@ -2,9 +2,9 @@
 
  Copyright (C) 2019-2021 Andrea Soltoggio, Pawel Ladosz, Eseoghene Ben-Iwhiwhu, Jeff Dick.
 """
-import gym
-from gym import error, spaces, utils
-from gym.utils import seeding
+import gymnasium as gym
+from gymnasium import error, spaces, utils
+from gymnasium.utils import seeding
 import numpy as np
 from .CTgraph_images import CTgraph_images
 
@@ -20,14 +20,15 @@ The graph uses 5 different state types:\n
 
 The graph can be configured to be MDP or POMDP. The subsets of observations can be specified in graph.json. Other parameters that can be specified can be found in graph.json
     """
-    def __init__(self):
+    '''def __init__(self):'''
+        
+
+    def __init__(self, conf_data, images):
         print("---------------------------------------------------")
         print("             The CT-graph environments             ")
         print("---------------------------------------------------")
         #configuration = CTgraph_conf("graph02.json")
         #conf_data = configuration.getParameters()
-
-    def init(self, conf_data, images):
         self.DEPTH = conf_data['graph_shape']['depth']
         if self.DEPTH < 1:
             print('Depth must be >= 1, setting it to 1')
@@ -73,7 +74,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.rnd = np.random.RandomState()
         self.set_seed(conf_data['image_dataset']['seed'])
 
-        self.images = images
+        
 
         self.MDP_waits = conf_data['observations']['MDP_wait_s']
         self.MDP_decisions = conf_data['observations']['MDP_decision_s']
@@ -84,6 +85,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         if self.MDP_decisions:
             assert (self.computeMDPsize()[2] <= self.setSizes[2]), "ERROR: There are no enough images in the subset for decision states to be used as states in the MDP. Modify graph.json to increase the subset size."
 
+        self.set_observation_images(images)
 
         self.set_seed(conf_data['general_seed'])
         self.set_high_reward_path(self.get_random_path())
@@ -126,7 +128,15 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         # 3: graph end
         # 4: crash
         #return self.images.getNoisyImage(self.X()), 0.0, False, "Root"
+        #return self.images.getNoisyImage(self.X())
+
+    def set_observation_images(self, images):
+        self.images = images
+    
+    
+    def get_observation_images(self):
         return self.images.getNoisyImage(self.X())
+
 
     def computeMDPsize(self):
         """Compute size of the minimal MDP according to equation XX and returns total MDP states, total DP and total DS."""
@@ -199,8 +209,9 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         #return "State: " + str(self.stateType)
         return {"state": str(self.stateType)}
 
-    def reset(self):
+    def reset(self, seed=None, options=None):
         """Set the CT-graph at the root node for a new episode"""
+        #super().reset(seed=self.set_seed(conf_data['image_dataset']['seed']))
         self.step_counter = 0
         self.stateType = 0
         self.decision_point_action_counter = 0
@@ -212,7 +223,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         if self.reward_static_location_counter == self.static_reward_episodes:
                 self.reset_static_reward()'''
 
-        return self.images.getNoisyImage(self.X())
+        return self.images.getNoisyImage(self.X()), self.info()
 
     def complete_reset(self):
         """Set the CT-graph at the root node for a newe episode and reset all data from the previous episodes: rwd_accumulator, reward location, and episode_counter"""
@@ -234,30 +245,30 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         if self.stateType == 0:
             self.stateType = 1
             #print('>>st:1, wait, img:', self.X())
-            return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+            return self.images.getNoisyImage(self.X()), 0.0, False, False, self.info()
 
         if (self.stateType == 1): # wait state
             if action == 0:
                 randomNumber = self.rnd.rand()
                 if randomNumber < self.P: #remain in wait state
                     #print('>>st:1, wait, img:', self.X())
-                    return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+                    return self.images.getNoisyImage(self.X()), 0.0, False, False, self.info()
                 else: # move to decision state or graph end
                     if self.decision_point_action_counter  == self.DEPTH:
                         self.stateType = 3
                         reward = self.calculate_reward()
                         reward_image = self.images.add_reward_cue(self.images.getNoisyImage(self.X()),reward/self.HIGH_REWARD_VALUE)
                         #print('>>st:3, move to END, img:', self.X())
-                        return reward_image, reward, False, self.info()
+                        return reward_image, reward, False, False, self.info()
                     else:
                         #decision point
                         self.stateType = 2
                         #print('>>st:2, move to DP, img:', self.X())
-                        return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+                        return self.images.getNoisyImage(self.X()), 0.0, False, False, self.info()
             else: # crashing from wait
                 self.stateType = 4
                 #print('>>st:4, img:', self.X())
-                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, False, self.info()
 
         if self.stateType == 2: # decision state
             if action > 0:
@@ -266,19 +277,19 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
                 self.decision_point_action_counter += 1
                 self.stateType = 1 # going to wait state
                 #print('>>st:1, to wait, img:', self.X())
-                return self.images.getNoisyImage(self.X()), 0.0, False, self.info()
+                return self.images.getNoisyImage(self.X()), 0.0, False, False, self.info()
             else:
                 self.stateType = 4 # going to crash state
                 #print('>>st:1, to crash, img:', self.X())
-                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, self.info()
+                return self.images.getNoisyImage(self.X()), self.CRASH_REWARD_VALUE, True, False, self.info()
         if self.stateType == 3:
             # any action gives reward and return home
             self.reset()
-            return self.images.getNoisyImage(self.X()), 0.0, True, self.info()
+            return self.images.getNoisyImage(self.X()), 0.0, True, False, self.info()
 
         if self.stateType == 4: # at a crash state
             self.stateType = 0#self.reset() # home state
-            return self.images.getNoisyImage(self.X()), 0, True, self.info()
+            return self.images.getNoisyImage(self.X()), 0, True, False, self.info()
 
     def render(self, mode='human', close=False):
         print('dynamic maze render')
@@ -319,3 +330,10 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         if self.STOCHASTIC_SAMPLING:
             reward = reward + (reward * np.random.normal(0,self.REWARD_STD))
         return reward
+    
+       
+    def close(self):
+        '''if self.window is not None:
+            pygame.display.quit()
+            pygame.quit()'''
+        pass

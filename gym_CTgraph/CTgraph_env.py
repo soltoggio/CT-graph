@@ -6,7 +6,12 @@ import gymnasium as gym
 from gymnasium import error, spaces, utils
 from gymnasium.utils import seeding
 import numpy as np
+import logging
+import os
 from .CTgraph_images import CTgraph_images
+
+logging.basicConfig(filename='high_reward_path.log', level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
 
 class CTgraphEnv(gym.Env):
     """Main CT-graph class
@@ -311,6 +316,7 @@ The graph can be configured to be MDP or POMDP. The subsets of observations can 
         self.static_reward_episodes = np.random.randint(self.MIN_STATIC_REWARD_EPISODES,
                                                         self.MAX_STATIC_REWARD_EPISODES)
         self.set_high_reward_path(self.get_random_path())#self.get_high_reward_path())#self.get_random_path()
+        logging.info('High reward path changed: %s', self.high_reward_path)
 
     def get_random_path(self):
         """Create and return a random location (graph-end)."""

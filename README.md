@@ -30,12 +30,12 @@ invariant and variant aspects of the environment.
 The CT-graph has been used as a simulation tool in the following papers:
 
 <ul>
-          <li>Nath, Saptarshi, Christos Peridis, Eseoghene Ben-Iwhiwhu, Xinran Liu, Shirin Dora, Cong Liu, Soheil Kolouri, and Andrea Soltoggio. "Sharing Lifelong Reinforcement Learning Knowledge via Modulating Masks." arXiv preprint arXiv:2305.10997 (2023).
-          <li>Ben-Iwhiwhu, E., Nath, S., Pilly, P. K., Kolouri, S., & Soltoggio, A. (2022). Lifelong Reinforcement Learning with Modulating Masks. arXiv preprint arXiv:2212.11110.
-          <li>Ben-Iwhiwhu, E., Dick, J., Ketz, N. A., Pilly, P. K., & Soltoggio, A. (2022). Context meta-reinforcement learning via neuromodulation. Neural Networks, 152, 70-79.
-<li>Ladosz, Pawel et al., "Deep Reinforcement Learning With Modulated Hebbian Plus Q-Network Architecture," in IEEE Transactions on Neural Networks and Learning Systems, doi: 10.1109/TNNLS.2021.3110281.
+          <li>Nath, Saptarshi, Christos Peridis, Eseoghene Ben-Iwhiwhu, Xinran Liu, Shirin Dora, Cong Liu, Soheil Kolouri, and Andrea Soltoggio (2023) "Sharing Lifelong Reinforcement Learning Knowledge via Modulating Masks." Second Conference on Lifelong Learning Agents (CoLLAs). <a href="https://arxiv.org/abs/2305.10997">arXiv preprint arXiv:2305.10997<a> .
+          <li>Ben-Iwhiwhu, E., Nath, S., Pilly, P. K., Kolouri, S., & Soltoggio, A. (2022). Lifelong Reinforcement Learning with Modulating Masks. <a href="https://arxiv.org/abs/2212.11110">arXiv preprint arXiv:2212.11110.</a>
+          <li>Ben-Iwhiwhu, E., Dick, J., Ketz, N. A., Pilly, P. K., & Soltoggio, A. (2022). Context meta-reinforcement learning via neuromodulation. Neural Networks, 152, 70-79. <a href="https://arxiv.org/abs/2111.00134">arXiv preprint</a>
+<li>Ladosz, Pawel et al., "Deep Reinforcement Learning With Modulated Hebbian Plus Q-Network Architecture," in IEEE Transactions on Neural Networks and Learning Systems, doi: 10.1109/TNNLS.2021.3110281. <a href="https://arxiv.org/abs/1909.09902">arXiv preprint</a>
 <li>Dick, Jeffery et al. “Detecting Changes and Avoiding Catastrophic Forgetting in Dynamic Partially Observable Environments.” Frontiers in neurorobotics vol. 14 578675. 23 Dec. 2020, doi:10.3389/fnbot.2020.578675         
-<li>Ben-Iwhiwhu, Eseoghene, et al. "Evolving inborn knowledge for fast adaptation in dynamic POMDP problems." Proceedings of the 2020 Genetic and Evolutionary Computation Conference. 2020. </li>
+<li>Ben-Iwhiwhu, Eseoghene, et al. "Evolving inborn knowledge for fast adaptation in dynamic POMDP problems." Proceedings of the 2020 Genetic and Evolutionary Computation Conference. 2020. <a href="https://arxiv.org/abs/2004.12846">arXiv preprint</a>
 </ul>
 
 <b>The CT-graph paper</b>
@@ -70,11 +70,11 @@ Files:
 Using tensorboad:
 tensorboard --logdir='./logs' --port=6707
 
-<b> Example of CT-graph with depth=1</b><br>
-![Figure](ctgraph-githubfig1.png)
+<b>Graphical representation of depth 1 and depth 2</b><br>
+![Figure](minimal-ct-graph.png)
 
-<b> Example of two CT-graphs with depth=2</b><br>
-![Figure](ctgraph-githubfig2.png)
+<b> Example of two CT-graphs with depth 2 and 3</b><br>
+![Figure](ctgraphsD2D3.png)
 
 <b>Acknowledgement</b>
 
